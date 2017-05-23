@@ -103,7 +103,7 @@ imageThree.addEventListener('click', function () {
   showRandomImages();
   console.log('button hit!');
 
-});
+}); 
 
 
 //
