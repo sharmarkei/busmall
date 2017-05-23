@@ -91,9 +91,6 @@ function selectImg(){
 
 
 
-
-
-
 selectImg();
 
 
