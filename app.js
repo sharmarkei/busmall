@@ -18,26 +18,26 @@ function Products(productName, pathWay) {
 }
 
 // Instantiate Product constructor
-var bag = new Products ('r2d2', './img/bag.jpg');
-var banana = new Products ('banana', './img/banana.jpg');
-var bathroom = new Products ('bathroom', './img/bathroom.jpg');
-var boots = new Products ('boots','./img/boots.jpg');
-var breakfast = new Products ('breakfast', './img/breakfast.jpg');
-var bubblegum = new Products ('bubblegum', './img/bubblegum.jpg');
-var chair = new Products ('chair', './img/chair.jpg');
-var cthulhu = new Products ('cthulhu', './img/cthulhu.jpg');
-var dogDuck = new Products ('dog-duck','./img/dog-duck.jpg');
-var dragon = new Products ('dragon', './img/dragon.jpg');
-var pen = new Products ('pen', './img/pen.jpg');
-var petSweep = new Products ('pet-sweep', './img/pet-sweep.jpg');
-var scissor = new Products ('scissors','./img/scissors.jpg');
-var shark = new Products ('shark', './img/shark.jpg');
-var sweep = new Products ('sweep', './img/sweep.png');
-var tauntaun = new Products ('tauntaun', './img/tauntaun.jpg');
-var unicorn = new Products ('unicorn', './img/unicorn.jpg');
-var usb = new Products ('usb', './img/usb.gif');
-var waterCan = new Products ('water-can', './img/water-can.jpg');
-var wineGlass = new Products ('wine-glass', './img/wine-glass.jpg');
+var bag = new Products('r2d2', './img/bag.jpg');
+var banana = new Products('banana', './img/banana.jpg');
+var bathroom = new Products('bathroom', './img/bathroom.jpg');
+var boots = new Products('boots','./img/boots.jpg');
+var breakfast = new Products('breakfast', './img/breakfast.jpg');
+var bubblegum = new Products('bubblegum', './img/bubblegum.jpg');
+var chair = new Products('chair', './img/chair.jpg');
+var cthulhu = new Products('cthulhu', './img/cthulhu.jpg');
+var dogDuck = new Products('dog-duck','./img/dog-duck.jpg');
+var dragon = new Products('dragon', './img/dragon.jpg');
+var pen = new Products('pen', './img/pen.jpg');
+var petSweep = new Products('pet-sweep', './img/pet-sweep.jpg');
+var scissor = new Products('scissors','./img/scissors.jpg');
+var shark = new Products('shark', './img/shark.jpg');
+var sweep = new Products('sweep', './img/sweep.png');
+var tauntaun = new Products('tauntaun', './img/tauntaun.jpg');
+var unicorn = new Products('unicorn', './img/unicorn.jpg');
+var usb = new Products('usb', './img/usb.gif');
+var waterCan = new Products('water-can', './img/water-can.jpg');
+var wineGlass = new Products('wine-glass', './img/wine-glass.jpg');
 
 // List of all product names
 var pictures = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissor, shark, sweep, tauntaun, unicorn, usb, waterCan, wineGlass];
@@ -55,8 +55,8 @@ function randomProductObject() {
 
 // Getting the img elements of images by #id
 var imageOne = document.getElementById('image-one');
-var imageThree = document.getElementById('image-three');
 var imageTwo = document.getElementById('image-two');
+var imageThree = document.getElementById('image-three');
 
 var firstRand, secondRand, thirdRand;
 
@@ -103,13 +103,7 @@ imageThree.addEventListener('click', function () {
   showRandomImages();
   console.log('button hit!');
 
-}); 
-
-
-//
-// .addEventListener('click',  selectImg() {
-//   clicked++
-// });
+});
 
 
 
