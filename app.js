@@ -1,7 +1,8 @@
 'use strict';
 
 // GLOBAL VARIBALES
-
+var counter = 0;
+var justShown = [];
 // Array of Product objects
 var productsArray = [];
 
@@ -39,19 +40,18 @@ var usb = new Products('usb', './img/usb.gif');
 var waterCan = new Products('water-can', './img/water-can.jpg');
 var wineGlass = new Products('wine-glass', './img/wine-glass.jpg');
 
-// List of all product names
-var pictures = [bag, banana, bathroom, boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissor, shark, sweep, tauntaun, unicorn, usb, waterCan, wineGlass];
-
 
 // Use the random number to return productsArray at where index = randomNum
 function randomProductObject() {
   // Get random num from 0 to 19
-  var getRandomIndex = Math.random() * pictures.length;
+  var getRandomIndex = Math.random() * productsArray.length;
+
   // Round the random number
   var roundedRandIndex = Math.floor(getRandomIndex);
   // Use the random number to return productsArray index
-  return productsArray[roundedRandIndex];
+  return [productsArray[roundedRandIndex], roundedRandIndex];
 }
+
 
 // Getting the img elements of images by #id
 var imageOne = document.getElementById('image-one');
@@ -60,53 +60,78 @@ var imageThree = document.getElementById('image-three');
 
 var firstRand, secondRand, thirdRand;
 
+
+
 // Displaying random images
 function showRandomImages(){
   // setting the src attribute to the pathway of randomly generated image
   firstRand = randomProductObject();
-  imageOne.setAttribute('src', firstRand.pathWay);
+  console.log(firstRand);
+  imageOne.setAttribute('src', firstRand[0].pathWay);
+
 
   secondRand = randomProductObject();
-  while (firstRand === secondRand) {
+  while (firstRand[1] === secondRand[1]) {
     secondRand = randomProductObject();
   }
   // setting the src attribute to the pathway of randomly generated image
-  imageTwo.setAttribute('src', secondRand.pathWay);
+  imageTwo.setAttribute('src', secondRand[0].pathWay);
 
   // Getting the third element of first image by ID
   thirdRand = randomProductObject();
-  while (secondRand === thirdRand || thirdRand === firstRand) {
+  while (secondRand[1] === thirdRand[1] || thirdRand[1] === firstRand[1]) {
     thirdRand = randomProductObject();
   }
   // setting the src attribute to the pathway of randomly generated image
-  imageThree.setAttribute('src', thirdRand.pathWay);
+  imageThree.setAttribute('src', thirdRand[0].pathWay);
+
+  justShown = [];
+  justShown.push(firstRand[1]);
+  justShown.push(secondRand[1]);
+  justShown.push(thirdRand[1]);
+
 }
 
 // Event Listener
 imageOne.addEventListener('click', function () {
   firstRand.clicked += 1;
+  counter += 1;
+  console.log('count clicks:', counter);
 
   showRandomImages();
-  console.log('button hit!');
 
 });
 
 imageTwo.addEventListener('click', function () {
   secondRand.clicked += 1;
+  counter += 1;
+  console.log('count clicks:', counter);
+
   showRandomImages();
-  console.log('button hit!');
 
 });
 
 imageThree.addEventListener('click', function () {
   thirdRand.clicked += 1;
+  counter += 1;
+  console.log('count clicks:', counter);
+
   showRandomImages();
-  console.log('button hit!');
+
 
 });
 
-
-
+// if (counter >= 25) {
+//   document.getElementById('test').style.display = 'none';
+// }
+//
+// function imagesToDom() {
+//   if (counter < 25) {
+//     showRandomImages();
+//   } else if(counter >= 25) {
+//     document.getElementById('test').style.display = 'none';
+//   }
+// }
 
 
 
@@ -115,3 +140,4 @@ imageThree.addEventListener('click', function () {
 
 // FUNCTION CALLS
 showRandomImages();
+// imagesToDom();
