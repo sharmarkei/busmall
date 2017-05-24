@@ -43,13 +43,22 @@ var wineGlass = new Products('wine-glass', './img/wine-glass.jpg');
 
 // Use the random number to return productsArray at where index = randomNum
 function randomProductObject() {
-  // Get random num from 0 to 19
-  var getRandomIndex = Math.random() * productsArray.length;
-
-  // Round the random number
-  var roundedRandIndex = Math.floor(getRandomIndex);
+  // // Get random num from 0 to 19
+  // var getRandomIndex = Math.random() * productsArray.length;
+  // // Round the random number
+  // var roundedRandIndex = Math.floor(getRandomIndex);
+  while (true) {
+    // Get random num from 0 to 19
+    var getRandomIndex = Math.random() * productsArray.length;
+    // Round the random number
+    var roundedRandIndex = Math.floor(getRandomIndex);
+    if(!justShown.includes(productsArray[roundedRandIndex])) {
+      return [productsArray[roundedRandIndex], roundedRandIndex];
+    }
+    // randomProductObject();
+  }
   // Use the random number to return productsArray index
-  return [productsArray[roundedRandIndex], roundedRandIndex];
+  // return [productsArray[roundedRandIndex], roundedRandIndex];
 }
 
 
