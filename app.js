@@ -42,6 +42,7 @@ var wineGlass = new Products('wine-glass', './img/wine-glass.jpg');
 
 // Use the random number to return productsArray at where index = randomNum
 function randomProductObject() {
+
   // // Get random num from 0 to 19
   // var getRandomIndex = Math.random() * productsArray.length;
   // // Round the random number
@@ -59,6 +60,7 @@ function randomProductObject() {
   }
   // Use the random number to return productsArray index
   // return [productsArray[roundedRandIndex], roundedRandIndex];
+
 }
 
 
@@ -66,6 +68,7 @@ function randomProductObject() {
 var imageOne = document.getElementById('image-one');
 var imageTwo = document.getElementById('image-two');
 var imageThree = document.getElementById('image-three');
+
 var score = document.getElementById('score');
 
 
@@ -77,7 +80,9 @@ var firstRand, secondRand, thirdRand;
 function showRandomImages(){
   // setting the src attribute to the pathway of randomly generated image
   firstRand = randomProductObject();
+
   imageOne.setAttribute('src', firstRand[0].pathWay);
+
 
   secondRand = randomProductObject();
   while (firstRand[1] === secondRand[1]) {
@@ -88,7 +93,9 @@ function showRandomImages(){
 
   // Getting the third element of first image by ID
   thirdRand = randomProductObject();
+
   while (secondRand[1] === thirdRand[1] || thirdRand[1] === firstRand[1] || thirdRand === firstRand) {
+
     thirdRand = randomProductObject();
   }
   // setting the src attribute to the pathway of randomly generated image
@@ -98,6 +105,7 @@ function showRandomImages(){
   justShown.push(firstRand[1]);
   justShown.push(secondRand[1]);
   justShown.push(thirdRand[1]);
+
   console.log('justShown:', justShown)
 
 }
@@ -161,6 +169,7 @@ function finalScore() {
 //       document.body.appendChild(list);
 //     }
 //   };
+
 
 
 // FUNCTION CALLS
