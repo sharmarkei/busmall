@@ -12,7 +12,6 @@ function Products(productName, pathWay) {
   this.pathWay = pathWay;
   this.shown = 0;
   this.clicked = 0;
-  this.newArray = [];
 
   // push this instance into product array
   productsArray.push(this);
@@ -52,7 +51,8 @@ function randomProductObject() {
     var getRandomIndex = Math.random() * productsArray.length;
     // Round the random number
     var roundedRandIndex = Math.floor(getRandomIndex);
-    if(!justShown.includes(productsArray[roundedRandIndex])) {
+
+    if( !justShown.includes(roundedRandIndex) ) {
       return [productsArray[roundedRandIndex], roundedRandIndex];
     }
     // randomProductObject();
@@ -66,6 +66,8 @@ function randomProductObject() {
 var imageOne = document.getElementById('image-one');
 var imageTwo = document.getElementById('image-two');
 var imageThree = document.getElementById('image-three');
+var score = document.getElementById('score');
+
 
 var firstRand, secondRand, thirdRand;
 
@@ -75,9 +77,7 @@ var firstRand, secondRand, thirdRand;
 function showRandomImages(){
   // setting the src attribute to the pathway of randomly generated image
   firstRand = randomProductObject();
-  console.log(firstRand);
   imageOne.setAttribute('src', firstRand[0].pathWay);
-
 
   secondRand = randomProductObject();
   while (firstRand[1] === secondRand[1]) {
@@ -88,7 +88,7 @@ function showRandomImages(){
 
   // Getting the third element of first image by ID
   thirdRand = randomProductObject();
-  while (secondRand[1] === thirdRand[1] || thirdRand[1] === firstRand[1]) {
+  while (secondRand[1] === thirdRand[1] || thirdRand[1] === firstRand[1] || thirdRand === firstRand) {
     thirdRand = randomProductObject();
   }
   // setting the src attribute to the pathway of randomly generated image
@@ -98,53 +98,69 @@ function showRandomImages(){
   justShown.push(firstRand[1]);
   justShown.push(secondRand[1]);
   justShown.push(thirdRand[1]);
+  console.log('justShown:', justShown)
 
 }
 
+
 // Event Listener
-imageOne.addEventListener('click', function () {
-  firstRand.clicked += 1;
+var imageClick = function () {
+  thirdRand[0].clicked += 1;
   counter += 1;
-  console.log('count clicks:', counter);
+  console.log('count:', counter);
+  console.log('clicked:', thirdRand[0].clicked);
 
+  if (counter >= 25) {
+    clicksReached();
+    finalScore();
+  }
   showRandomImages();
+};
 
-});
-
-imageTwo.addEventListener('click', function () {
-  secondRand.clicked += 1;
-  counter += 1;
-  console.log('count clicks:', counter);
-
-  showRandomImages();
-
-});
-
-imageThree.addEventListener('click', function () {
-  thirdRand.clicked += 1;
-  counter += 1;
-  console.log('count clicks:', counter);
-
-  showRandomImages();
+imageOne.addEventListener('click', imageClick);
+imageTwo.addEventListener('click',imageClick);
+imageThree.addEventListener('click', imageClick);
 
 
-});
 
-// if (counter >= 25) {
-//   document.getElementById('test').style.display = 'none';
-// }
+
+
+function clicksReached() {
+  imageOne.removeEventListener('click', imageClick);
+  imageTwo.removeEventListener('click', imageClick);
+  imageThree.removeEventListener('click', imageClick);
+}
+
+function finalScore() {
+  var listArr = [];
+  var test = document.createElement('ul');
+  for (var i = 0; i < productsArray.length; i++) {
+    listArr.push('<li>' + 'This picture ' + productsArray[i].productName + ' got ' + productsArray[i].clicked + ' votes.' + '</li>');
+  }
+  test.innerHTML = listArr.join('');
+  score.appendChild(test);
+}
+
+// var list = document.createElement('ul');
+//       var listArr = [];
 //
-// function imagesToDom() {
-//   if (counter < 25) {
-//     showRandomImages();
-//   } else if(counter >= 25) {
-//     document.getElementById('test').style.display = 'none';
-//   }
-// }
-
-
-
-
+//       for (var i = 0; i < hours.length; i++) {
+//
+//         if (i < 5) {
+//           listArr.push('<li>' + hours[i] + ': ' + this.avgCustArr[i] + ' cookies</li>');
+//         } else {
+//           listArr.push('<li>' + hours[i] + ': ' + this.avgCustArr[i] + ' cookies</li>');
+//
+//         }
+//       }
+//
+//       listArr.push('<li>Total: ' + this.totalCooks + ' cookies</li>');
+//
+//       var fullString = listArr.join('');
+//       list.innerHTML = fullString;
+//       document.body.appendChild(list);
+//     }
+//   };
 
 
 // FUNCTION CALLS
