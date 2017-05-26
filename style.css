@@ -1,14 +1,23 @@
+body {
+  background: linear-gradient(black, #8ba65e);
+
+}
+li {
+  font-size: 15pt;
+  text-align: center;
+  list-style: none;
+}
 img {
   margin-top: 20px;
   margin-left: 100px;
   width: 300px;
   height: 300px;
-
   border-radius: 25px;
-
+  border-style: groove;
 }
 
 h1 {
   text-align: center;
   font-size: 32pt;
+  color: #8a95a6;
 }
