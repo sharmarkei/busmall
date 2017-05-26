@@ -163,7 +163,7 @@ new Chart(ctx, {
     ]
   },
   options: {
-    // responsive: false
+    responsive: false
   }
 });
 
