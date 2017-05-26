@@ -16,28 +16,29 @@ function Products(productName, pathWay) {
   // push this instance into product array
   productsArray.push(this);
 }
+// var people = [bag,banana,bathroom,boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissor, shark, sweep, tauntaun, unicorn, usb, waterCan, wineGlass];
 
 // Instantiate Product constructor
-var bag = new Products('r2d2', './img/bag.jpg');
-var banana = new Products('banana', './img/banana.jpg');
-var bathroom = new Products('bathroom', './img/bathroom.jpg');
-var boots = new Products('boots','./img/boots.jpg');
-var breakfast = new Products('breakfast', './img/breakfast.jpg');
-var bubblegum = new Products('bubblegum', './img/bubblegum.jpg');
-var chair = new Products('chair', './img/chair.jpg');
-var cthulhu = new Products('cthulhu', './img/cthulhu.jpg');
-var dogDuck = new Products('dog-duck','./img/dog-duck.jpg');
-var dragon = new Products('dragon', './img/dragon.jpg');
-var pen = new Products('pen', './img/pen.jpg');
-var petSweep = new Products('pet-sweep', './img/pet-sweep.jpg');
-var scissor = new Products('scissors','./img/scissors.jpg');
-var shark = new Products('shark', './img/shark.jpg');
-var sweep = new Products('sweep', './img/sweep.png');
-var tauntaun = new Products('tauntaun', './img/tauntaun.jpg');
-var unicorn = new Products('unicorn', './img/unicorn.jpg');
-var usb = new Products('usb', './img/usb.gif');
-var waterCan = new Products('water-can', './img/water-can.jpg');
-var wineGlass = new Products('wine-glass', './img/wine-glass.jpg');
+new Products('r2d2', './img/bag.jpg');
+new Products('banana', './img/banana.jpg');
+new Products('bathroom', './img/bathroom.jpg');
+new Products('boots','./img/boots.jpg');
+new Products('breakfast', './img/breakfast.jpg');
+new Products('bubblegum', './img/bubblegum.jpg');
+new Products('chair', './img/chair.jpg');
+new Products('cthulhu', './img/cthulhu.jpg');
+new Products('dog-duck','./img/dog-duck.jpg');
+new Products('dragon', './img/dragon.jpg');
+new Products('pen', './img/pen.jpg');
+new Products('pet-sweep', './img/pet-sweep.jpg');
+new Products('scissors','./img/scissors.jpg');
+new Products('shark', './img/shark.jpg');
+new Products('sweep', './img/sweep.png');
+new Products('tauntaun', './img/tauntaun.jpg');
+new Products('unicorn', './img/unicorn.jpg');
+new Products('usb', './img/usb.gif');
+new Products('water-can', './img/water-can.jpg');
+new Products('wine-glass', './img/wine-glass.jpg');
 
 
 // Use the random number to return productsArray at where index = randomNum
@@ -141,26 +142,30 @@ function finalScore() {
   score.appendChild(test);
 }
 
-// var list = document.createElement('ul');
-//       var listArr = [];
-//
-//       for (var i = 0; i < hours.length; i++) {
-//
-//         if (i < 5) {
-//           listArr.push('<li>' + hours[i] + ': ' + this.avgCustArr[i] + ' cookies</li>');
-//         } else {
-//           listArr.push('<li>' + hours[i] + ': ' + this.avgCustArr[i] + ' cookies</li>');
-//
-//         }
-//       }
-//
-//       listArr.push('<li>Total: ' + this.totalCooks + ' cookies</li>');
-//
-//       var fullString = listArr.join('');
-//       list.innerHTML = fullString;
-//       document.body.appendChild(list);
-//     }
-//   };
+var canvas = document.getElementById('chart');
+var ctx = canvas.getContext('2d');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['bag', 'banana', 'bathroom' ,'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dogDuck', 'dragon', 'pen', 'petSweep', 'scissor', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'waterCan', 'wineGlass'],
+    datasets: [
+      {
+        label: 'Clicks',
+        data: productsArray,
+        backgroundColor: '#33a'
+      },
+      {
+        label: 'Shown',
+        data: justShown,
+        backgroundColor: '#88a'
+      }
+    ]
+  },
+  options: {
+    // responsive: false
+  }
+});
 
 
 // FUNCTION CALLS
