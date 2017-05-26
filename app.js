@@ -55,6 +55,7 @@ function randomProductObject() {
     var roundedRandIndex = Math.floor(getRandomIndex);
 
     if( !justShown.includes(roundedRandIndex) ) {
+      productsArray[roundedRandIndex].shown+=1;
       return [productsArray[roundedRandIndex], roundedRandIndex];
     }
     // randomProductObject();
@@ -107,6 +108,7 @@ function showRandomImages(){
   justShown.push(secondRand[1]);
   justShown.push(thirdRand[1]);
 
+
   console.log('justShown:', justShown)
 
 }
@@ -148,32 +150,52 @@ function finalScore() {
   }
   test.innerHTML = listArr.join('');
   score.appendChild(test);
+
+  charts();
 }
 
-var canvas = document.getElementById('chart');
-var ctx = canvas.getContext('2d');
-
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['bag', 'banana', 'bathroom' ,'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dogDuck', 'dragon', 'pen', 'petSweep', 'scissor', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'waterCan', 'wineGlass'],
-    datasets: [
-      {
-        label: 'Clicks',
-        data: productsArray,
-        backgroundColor: '#33a'
-      },
-      {
-        label: 'Shown',
-        data: justShown,
-        backgroundColor: '#88a'
-      }
-    ]
-  },
-  options: {
-    responsive: false
+function clicksArray() {
+  var clicks = [];
+  for (var i = 0; i < productsArray.length; i++) {
+    clicks.push(productsArray[i].clicked);
   }
-});
+  return clicks;
+}
+
+function shownArray() {
+  var shownChart = [];
+  for (var i = 0; i < productsArray.length; i++) {
+    shownChart.push(productsArray[i].shown);
+  }
+  console.log('shownChart:', shownChart);
+  return shownChart;
+}
+
+function charts() {
+  var canvas = document.getElementById('chart');
+  var ctx = canvas.getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['bag', 'banana', 'bathroom' ,'boots', 'breakfast', 'bubblegum', 'chair', 'cthulhu', 'dogDuck', 'dragon', 'pen', 'petSweep', 'scissor', 'shark', 'sweep', 'tauntaun', 'unicorn', 'usb', 'waterCan', 'wineGlass'],
+      datasets: [
+        {
+          label: 'Votes',
+          data: clicksArray(),
+          backgroundColor: '#33a'
+        },
+        {
+          label: 'Shown',
+          data: shownArray(),
+          backgroundColor: '#88a'
+        }
+      ]
+    },
+    options: {
+      responsive: false
+    }
+  });
+}
 
 
 
