@@ -19,26 +19,30 @@ function Products(productName, pathWay) {
 // var people = [bag,banana,bathroom,boots, breakfast, bubblegum, chair, cthulhu, dogDuck, dragon, pen, petSweep, scissor, shark, sweep, tauntaun, unicorn, usb, waterCan, wineGlass];
 
 // Instantiate Product constructor
-new Products('r2d2', './img/bag.jpg');
-new Products('banana', './img/banana.jpg');
-new Products('bathroom', './img/bathroom.jpg');
-new Products('boots','./img/boots.jpg');
-new Products('breakfast', './img/breakfast.jpg');
-new Products('bubblegum', './img/bubblegum.jpg');
-new Products('chair', './img/chair.jpg');
-new Products('cthulhu', './img/cthulhu.jpg');
-new Products('dog-duck','./img/dog-duck.jpg');
-new Products('dragon', './img/dragon.jpg');
-new Products('pen', './img/pen.jpg');
-new Products('pet-sweep', './img/pet-sweep.jpg');
-new Products('scissors','./img/scissors.jpg');
-new Products('shark', './img/shark.jpg');
-new Products('sweep', './img/sweep.png');
-new Products('tauntaun', './img/tauntaun.jpg');
-new Products('unicorn', './img/unicorn.jpg');
-new Products('usb', './img/usb.gif');
-new Products('water-can', './img/water-can.jpg');
-new Products('wine-glass', './img/wine-glass.jpg');
+if(!localStorage.savedArray) {
+  new Products('r2d2', './img/bag.jpg');
+  new Products('banana', './img/banana.jpg');
+  new Products('bathroom', './img/bathroom.jpg');
+  new Products('boots','./img/boots.jpg');
+  new Products('breakfast', './img/breakfast.jpg');
+  new Products('bubblegum', './img/bubblegum.jpg');
+  new Products('chair', './img/chair.jpg');
+  new Products('cthulhu', './img/cthulhu.jpg');
+  new Products('dog-duck','./img/dog-duck.jpg');
+  new Products('dragon', './img/dragon.jpg');
+  new Products('pen', './img/pen.jpg');
+  new Products('pet-sweep', './img/pet-sweep.jpg');
+  new Products('scissors','./img/scissors.jpg');
+  new Products('shark', './img/shark.jpg');
+  new Products('sweep', './img/sweep.png');
+  new Products('tauntaun', './img/tauntaun.jpg');
+  new Products('unicorn', './img/unicorn.jpg');
+  new Products('usb', './img/usb.gif');
+  new Products('water-can', './img/water-can.jpg');
+  new Products('wine-glass', './img/wine-glass.jpg');
+} else {
+  productsArray = JSON.parse(localStorage.savedArray);
+}
 
 
 // Use the random number to return productsArray at where index = randomNum
@@ -67,6 +71,7 @@ function randomProductObject() {
 
 
 // Getting the img elements of images by #id
+
 var imageOne = document.getElementById('image-one');
 var imageTwo = document.getElementById('image-two');
 var imageThree = document.getElementById('image-three');
@@ -108,25 +113,33 @@ function showRandomImages(){
   justShown.push(secondRand[1]);
   justShown.push(thirdRand[1]);
 
-
-  console.log('justShown:', justShown)
+  console.log('justShown:', justShown);
 
 }
 
 
 // Event Listener
-var imageClick = function () {
-  thirdRand[0].clicked += 1;
+function imageClick(e) {
+  var testRun = e.target.getAttribute('src');
   counter += 1;
-  console.log('count:', counter);
-  console.log('clicked:', thirdRand[0].clicked);
+
+  if(testRun === firstRand[0].pathWay) {
+    firstRand[0].clicked+= 1;
+  }
+  if (testRun === secondRand[0].pathWay) {
+    secondRand[0].clicked+= 1;
+  }
+  if (testRun === thirdRand[0].pathWay) {
+    thirdRand[0].clicked+= 1;
+  }
+
 
   if (counter >= 25) {
     clicksReached();
     finalScore();
   }
   showRandomImages();
-};
+}
 
 imageOne.addEventListener('click', imageClick);
 imageTwo.addEventListener('click',imageClick);
@@ -140,6 +153,7 @@ function clicksReached() {
   imageOne.removeEventListener('click', imageClick);
   imageTwo.removeEventListener('click', imageClick);
   imageThree.removeEventListener('click', imageClick);
+  localStorage.savedArray = JSON.stringify(productsArray);
 }
 
 function finalScore() {
